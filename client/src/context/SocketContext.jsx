@@ -12,7 +12,7 @@ export function SocketProvider({ children }) {
 
   useEffect(() => {
     if (!user) return;
-    const s = io({ auth: { token: localStorage.getItem('token') } });
+    const s = io(import.meta.env.VITE_API_URL || undefined, { auth: { token: localStorage.getItem('token') } });
     setSocket(s);
     return () => {
       s.disconnect();
